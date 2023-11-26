@@ -1,448 +1,268 @@
-	<!DOCTYPE html>
-	<html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 
-	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="Author" content="Domínguez Palacios Jesús Alejandro"/><!--Autor-->
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
-		<!-- Título de tu proyecto -->
-		<title>Sistemas Algebraicos. Método de Quine Mc Cluskey para minimizar funciones booleanas.</title>
-		
-		<meta name="Description" content="Estudio General del Sistema"/><!--Descripción del tutorial-->
-		<meta name="Keywords" content="Factores, Estudio, General, Sistema"/><!--Palabras clave-->
-		<meta name="robots" content="noindex, nofollow"/>
-		
-		<script src="media/js/jq.js" type="text/javascript"></script>
-		<script src="media/js/m.js" type="text/javascript"></script>
-		<script src="media/js/ui.js" type="text/javascript"></script>
-		
-		<link rel="stylesheet" href="media/css/ui.css" type="text/css" />
-		
-		<!-- El siguiente CSS puede utilizarse para hacer los ajustes necesarios de los contenidos -->
-		<style>
-			.cuadro {
-				width: 700px;
-				background-color: #000;
-				border: 1px solid #fff; /* Cambiado a blanco */
-				padding: 10px;
-		
-				/* Centro el cuadro horizontalmente */
-				margin: 0 auto;
-			}
-		</style>
-		
-		
+  <!-- Título de tu proyecto -->
+  <title>Estudio general del sistema</title>
 
-	</head>
+  <meta name="Description" content="Estudio General del Sistema" /> <!--Descripción del tutorial-->
+  <meta name="Keywords" content="Factores, Estudio, General, Sistema" /> <!--Palabras clave-->
+  <meta name="robots" content="noindex, nofollow" />
 
-	<body>
-		<p class="texto-negritas">Ejemplo 1</p>
-		<p>En el siguiente ejemplo podremos observar cómo se lleva a cabo el método de Quine McCluskey para minimizar la siguiente expresión.</p>
-		<p>f=(a,b,c,d) = (1,3,9,11) podemos observar que la función contiene 4 minitérminos</p>
+  <script src="media/js/jq.js" type="text/javascript"></script>
+  <script src="media/js/m.js" type="text/javascript"></script>
+  <script src="media/js/ui.js" type="text/javascript"></script>
 
-	<p>Nuestro paso no.1 es generar nuestra Tabla 1:</p>
-	<img id="tabla1" src="images/tabla1_ejemplo1.png" >
-	<p></p>
+  <link rel="stylesheet" href="media/css/ui.css" type="text/css" />
+
+  <!-- El siguiente CSS puede utilizarse para hacer los ajustes necesarios de los contenidos -->
+  <style>
+    body {
+      margin: 0;
+      font-size: 14px; /* Ajustar el tamaño del texto */
+      line-height: 1.6;
+    }
+
+    .cuadro {
+      width: 90%;
+      max-width: 800px;
+      margin: 20px auto; /* Separación superior e inferior del cuadro */
+      padding: 20px;
+      background-color: #000;
+      border: 1px solid #fff;
+      box-sizing: border-box;
+    }
+
+    summary {
+      font-size: 2em;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .contenido-seccion {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .contenido-visible {
+      display: block;
+    }
+
+    details {
+      max-width: 100%;
+    }
+
+    ol {
+      margin: 0;
+      padding: 0;
+      font-size: 1.2em;
+    }
+
+    li {
+      list-style-type: none;
+      margin-bottom: 1em;
+    }
+
+    p {
+      font-size: 1.2em;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 1.6em;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .texto-negritas {
+      font-weight: bold;
+    }
+
+    /* Estilo para los botones */
+    .botones-container {
+      text-align: center;
+    }
+
+    .botones-seccion1 button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 1em;
+    }
+  </style>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Documento HTML con Índice Interactivo</title>
+</head>
+
+
+<body>
 	<div class="cuadro">
-		<p></p>
-        <p>Columna minitérminos: llenamos conforme a los minitérminos que nos muestra la función en este caso: 1,3,9,11</p>
-        <p>Columna 1´s: es el número de 1´s que contiene el número binario de ese minitérmino</p>
-        <p>abcd: el número binario que representa ese minitérmino</p>
-		<p></p>
-    </div>
-	<p></p>
-	<p>Nuestro paso no.2 es generar nuestra Tabla 2 que consiste en lo siguiente:</p>
-	<img id="tabla2" src="images/tabla2_ejemplo1.png" >
-	<p></p>
-	<div class="cuadro">
-		<p></p>
-        <p>En nuestra tabla 2 agruparemos nuestros minitérminos conforme al número de 1´s que contengan en su número binario.</p>
-		<p> </p>
-		<p>En la columna de comentarios de la tabla 1 iremos añadiendo un * a cada minitérmino ya utilizado en nuestra tabla 2 esto con la finalidad de tener un mejor control. </p>
-		<p></p>
-    </div>
-
-	<p></p>
-	<p>Nuestro paso no.3 es generar nuestra Tabla 3 de la siguiente manera:</p>
-	<img id="tabla3" src="images/tabla3_ejemplo1.png" >
-	<p></p>
-	<div class="cuadro">
-		<p></p>
-        <p>En nuestra tabla 3 haremos combinaciones con los minitérminos que tenemos en la tabla 2, es muy importante saber que solo pueden cambiar en una sola variable y que se debe de hacer de acuerdo con el número de 1´s; primero los un 1´s con los de dos 1´s, los de dos 1´s con los de tres 1´s y sucesivamente. </p>
-		<p> </p>
-		<p>Después intercambiaremos por un guion la variable que cambia en nuestra combinación y nuevamente llenamos la columna de 1´s que hay en esa combinación.  </p>
-		<p></p>
-		<p>Nota: importante marcar con * cada minitérmino utilizado en nuestra tabla 2 </p>
-    </div>
-
-	<p></p>
-	<p>El siguiente paso no.4 es realizar nuestra Tabla 4 con las siguientes especificaciones:</p>
-	<img id="tabla4" src="images/tabla4_ejemplo1.png" >
-	<p></p>
-	<div class="cuadro">
-		<p></p>
-        <p>En este caso tenemos la combinación: (1,3,9,11) porque son combinaciones que ya existen (1,3) con (9,11) 
-			y también tenemos (1,9) con (3,11) entonces no las repetimos, y recordamos seguir la misma técnica que 
-			en la tabla 3 combinamos los un 1´s con los 2 1´s y así sucesivamente. Importante agregar un guion en la 
-			variable que cambie en nuestra combinación. </p>
-		<p> </p>
-		<p>Nota: marcar con un * en nuestra tabla 3 los minitérminos que utilizamos en nuestras combinaciones</p>
+	  <div id="seccion1" class="contenido-seccion contenido-visible">
+		<div id="pasos">
+		  <!-- Contenido de los pasos de la sección 1 se mostrará aquí -->
+		</div>
+		<div class="botones-container botones-seccion1">
+		  <!-- Botones de Anterior y Siguiente solo para la sección 1 -->
+		  <p></p>
+		  <button onclick="mostrarPaso('anterior')">Anterior</button>
+		  <button onclick="mostrarPaso('siguiente')">Siguiente</button>
+		</div>
+	  </div>
+  
+	  <div id="seccion2" class="contenido-seccion">
+		<h2>Sección 2</h2>
+		<!-- Contenido de la sección 2 -->
+	  </div>
+  
+	  <div id="seccion3" class="contenido-seccion">
+		<h2>Sección 3</h2>
+		<!-- Contenido de la sección 3 -->
+	  </div>
+  
+	  <div class="botones-container">
+		<!-- Botones de Anterior y Siguiente para todas las secciones -->
+		<button onclick="mostrarSeccion('anterior')">Anterior</button>
+		<button onclick="mostrarSeccion('siguiente')">Siguiente</button>
+	  </div>
+	</div>
+  
+	<script>
+	  document.addEventListener('DOMContentLoaded', function () {
+		const enlacesIndice = document.querySelectorAll('.enlace-indice');
+		const seccionesContenido = document.querySelectorAll('.contenido-seccion');
+  
+		enlacesIndice.forEach(function (enlace) {
+		  enlace.addEventListener('click', function (event) {
+			event.preventDefault();
+			const objetivo = this.getAttribute('href').substring(1);
+  
+			seccionesContenido.forEach(function (seccion) {
+			  seccion.classList.remove('contenido-visible');
+			});
+  
+			document.getElementById(objetivo).classList.add('contenido-visible');
+		  });
+		});
+	  });
+  
+	  document.addEventListener('DOMContentLoaded', function () {
+		const pasosContenidoSeccion1 = [
+		'<p class="texto-negritas">Ejemplo 1</p>' +
+      '<p>En el siguiente ejemplo podremos observar cómo se lleva a cabo el método de Quine McCluskey para minimizar la siguiente expresión.</p>' +
+      '<p>f=(a,b,c,d) = (1,3,9,11) podemos observar que la función contiene 4 minitérminos</p>' +
+      '<p>Nuestro paso no.1 es generar nuestra Tabla 1:</p>' +
+      '<img id="tabla1" src="images/tabla1_ejemplo1.png" >' +
+      '<div class="cuadro">' +
+      '<p>Columna minitérminos: llenamos conforme a los minitérminos que nos muestra la función en este caso: 1,3,9,11</p>' +
+      '<p>Columna 1´s: es el número de 1´s que contiene el número binario de ese minitérmino</p>' +
+      '<p>abcd: el número binario que representa ese minitérmino</p>' +
+      '</div>',
+	  '<p>Nuestro paso no.2 es generar nuestra Tabla 2 que consiste en lo siguiente:</p>' +
+      '<img id="tabla2" src="images/tabla2_ejemplo1.png" >' +
+      '<div class="cuadro">' +
+      '<p>En nuestra tabla 2 agruparemos nuestros minitérminos conforme al número de 1´s que contengan en su número binario.</p>' +
+      '<p> </p>' +
+      '<p>En la columna de comentarios de la tabla 1 iremos añadiendo un * a cada minitérmino ya utilizado en nuestra tabla 2 esto con la finalidad de tener un mejor control. </p>' +
+      '</div>',
 		
-    </div>
+	  '<p>Nuestro paso no.3 es generar nuestra Tabla 3 de la siguiente manera:</p>'+
+	  '<img id="tabla3" src="images/tabla3_ejemplo1.png" >'+
+	  '<p></p>'+
+	  '<div class="cuadro">'+
+		'<p></p>'+
+        '<p>En nuestra tabla 3 haremos combinaciones con los minitérminos que tenemos en la tabla 2, es muy importante saber que solo pueden cambiar en una sola variable y que se debe de hacer de acuerdo con el número de 1´s; primero los un 1´s con los de dos 1´s, los de dos 1´s con los de tres 1´s y sucesivamente. </p>'+
+		'<p> </p>'+
+		'<p>Después intercambiaremos por un guion la variable que cambia en nuestra combinación y nuevamente llenamos la columna de 1´s que hay en esa combinación.  </p>'+
+		'<p></p>'+
+		'<p>Nota: importante marcar con * cada minitérmino utilizado en nuestra tabla 2 </p>'+
+		'</div> ',
 
-</div>
+		'<p></p>'+
+		'<p>El siguiente paso no.4 es realizar nuestra Tabla 4 con las siguientes especificaciones:</p>'+
+		'<img id="tabla4" src="images/tabla4_ejemplo1.png" >'+
+		'<p></p>'+
+		'<div class="cuadro">'+
+			'<p></p>'+
+			'<p>En este caso tenemos la combinación: (1,3,9,11) porque son combinaciones que ya existen (1,3) con (9,11)'+ 
+			'y también tenemos (1,9) con (3,11) entonces no las repetimos, y recordamos seguir la misma técnica que'+ 
+			'en la tabla 3 combinamos los un 1´s con los 2 1´s y así sucesivamente. Importante agregar un guion en la'+ 
+			'variable que cambie en nuestra combinación. </p>'+
+			'<p> </p>'+
+			'<p>Nota: marcar con un * en nuestra tabla 3 los minitérminos que utilizamos en nuestras combinaciones</p>'+		
+			'</div>',
 
-<p></p>
-<p>Nuestro paso no.5 y último paso es generar nuestra Tabla 5 de la siguiente manera:</p>
-<img id="tabla5" src="images/tabla5_ejemplo1.png">
-<p></p>
-<div class="cuadro">
-	<p></p>
-	<p>COLUMNAS TABLA 5</p>
-	<p>abcd: Este es el número binario de nuestra combinación después de modificar la variable distinta con un guion. </p>
-	<p></p>
-	<p>1´s: El número de 1´s que contiene nuestro número binario dado por la combinación. </p>
-	<p></p>
-	<p>1,3,9,11: son todos los minitérminos de nuestra expresión, tiene una x para marcar que ya han sido utilizados. </p>
-	<p></p>
-	<p>Producto: Es el valor de las variables según nuestra columna abcd en la Tabla 5, recordemos que un guion nos 
-		indica que no es necesaria esa variable, un cero es el negado de la variable y un 1 es la misma variable. </p>
+
+			'<p>Nuestro paso no.5 y último paso es generar nuestra Tabla 5 de la siguiente manera:</p>'+
+			'<img id="tabla5" src="images/tabla5_ejemplo1.png">'+
+			'<p></p>'+
+			'<div class="cuadro">'+
+				'<p></p>'+
+				'<p>COLUMNAS TABLA 5</p>'+
+				'<p>abcd: Este es el número binario de nuestra combinación después de modificar la variable distinta con un guion. </p>'+
+				'<p></p>'+
+				'<p>1´s: El número de 1´s que contiene nuestro número binario dado por la combinación. </p>'+
+				'<p></p>'+
+				'<p>1,3,9,11: son todos los minitérminos de nuestra expresión, tiene una x para marcar que ya han sido utilizados. </p>'+
+				'<p></p>'+
+				'<p>Producto: Es el valor de las variables según nuestra columna abcd en la Tabla 5, recordemos que un guion nos'+ 
+					'indica que no es necesaria esa variable, un cero es el negado de la variable y un 1 es la misma variable. </p>'+
 	
-</div>
+					'</div>'+
 
-	<p>En nuestro resultado final pondremos nuestra minimización dada por la suma de productos de la siguiente 
-		manera:</p>
-	<p>f=(a,b,c,d) = ∑m(1,3,9,11) = b´d </p>
-	</body>
-
-	<style>
-		.texto-negritas {
-		  text-align: center;
-		  font-weight: bold;
+					'<p>En nuestro resultado final pondremos nuestra minimización dada por la suma de productos de la siguiente '+
+						'manera:</p>'+
+						'<p>f=(a,b,c,d) = ∑m(1,3,9,11) = b´d </p>'+
+						'</body>'
+		];
+  
+		let pasoActualSeccion1 = 0;
+  
+		// Mostrar el contenido del primer paso al cargar la página
+		mostrarPaso();
+	
+		function mostrarPaso() {
+		  // Mostrar el contenido del paso actual solo para la sección 1
+		  document.getElementById('pasos').innerHTML = pasosContenidoSeccion1[pasoActualSeccion1];
 		}
-	  </style>
+  
+		window.mostrarPaso = function (direccion) {
+		  // Determinar el paso siguiente o anterior solo para la sección 1
+		  if (direccion === 'anterior' && pasoActualSeccion1 > 0) {
+			pasoActualSeccion1--;
+		  } else if (direccion === 'siguiente' && pasoActualSeccion1 < pasosContenidoSeccion1.length - 1) {
+			pasoActualSeccion1++;
+		  }
+  
+		  // Mostrar el contenido del paso actual solo para la sección 1
+		  mostrarPaso();
+		};
+	  });
+  
+	  function mostrarSeccion(direccion) {
+		const seccionesContenido = document.querySelectorAll('.contenido-seccion');
+		let indiceVisible = -1;
+  
+		seccionesContenido.forEach(function (seccion, indice) {
+		  if (seccion.classList.contains('contenido-visible')) {
+			indiceVisible = indice;
+		  }
+		});
+  
+		if (direccion === 'anterior' && indiceVisible > 0) {
+		  seccionesContenido[indiceVisible].classList.remove('contenido-visible');
+		  seccionesContenido[indiceVisible - 1].classList.add('contenido-visible');
+		} else if (direccion === 'siguiente' && indiceVisible < seccionesContenido.length - 1) {
+		  seccionesContenido[indiceVisible].classList.remove('contenido-visible');
+		  seccionesContenido[indiceVisible + 1].classList.add('contenido-visible');
+		}
+	  }
+	</script>
+  </body>
+  
 
-	<p class="texto-negritas">Ejemplo 2</p>
-
-	<p></p>
-<p>En el siguiente ejemplo podremos observar cómo se lleva a cabo el método de Quine McCluskey para 
-	minimizar la siguiente expresión.</p>
-<p>f=(a,b,c,d) = ∑m(0,1,4,5,11,15) podemos observar que la función contiene 6 minitérminos</p>
-<p>Nuestro paso no.1 es generar nuestra Tabla 1:</p>
-<img id="tabla6" src="images/tabla1_ejemplo2.png">
-<p></p>
-<div class="cuadro">
-	<p></p>
-	<p>Columna minitérminos: llenamos conforme a los minitérminos que nos muestra la función en 
-		este caso: 0,1,4,5,11,15</p>
-	<p>Columna 1´s: es el número de 1´s que contiene el número binario de ese minitérmino</p>
-	<p>abcd: el número binario que representa ese minitérmino  </p>
-	
-</div>
-
-<p></p>
-<p>Nuestro paso no.2 es generar nuestra Tabla 2 que consiste en lo siguiente:</p>
-<img id="tabla7" src="images/tabla2_ejemplo2.png">
-<p></p>
-<div class="cuadro">
-	<p></p>
-	<p>En nuestra tabla 2 agruparemos nuestros minitérminos conforme al número de 1´s que contengan en su 
-		número binario.5</p>
-	<p>Nota: En la columna de comentarios de la tabla 1 iremos añadiendo un * a cada minitérmino ya utilizado en 
-		nuestra tabla 2 esto con la finalidad de tener un mejor control. </p>
-</div>
-
-
-<p></p>
-<p>Nuestro paso no.3 es generar nuestra Tabla 3 de la siguiente manera:</p>
-<img id="tabla8" src="images/tabla3_ejemplo2.png">
-<p></p>
-<div class="cuadro">
-	<p></p>
-	<p>En nuestra tabla 3 haremos combinaciones con los minitérminos que tenemos en la tabla 2, es muy importante 
-		saber que solo pueden cambiar en una sola variable y que se debe de hacer de acuerdo con el número de 1´s; 
-		primero los un 1´s con los de dos 1´s, los de dos 1´s con los de tres 1´s y sucesivamente. </p>
-	<p>Después intercambiaremos por un guion la variable que cambia en nuestra combinación y nuevamente llenamos 
-		la columna de 1´s que hay en esa combinación.  </p>
-	<p>Nota: Importante marcar con * cada minitérmino utilizado en nuestra tabla 2 </p>
-</div>		
-
-<p></p>
-<p>El siguiente paso no.4 es realizar nuestra Tabla 4 con las siguientes especificaciones:</p>
-<img id="tabla9" src="images/tabla4_ejemplo2.png">
-<p></p>
-<div class="cuadro">
-	<p></p>
-	<p>En este caso tenemos la combinación: (0,1,4,5) porque son combinaciones que ya existen (0,1) con (4,5) y 
-		también tenemos (0,4) con (1,5) entonces no las repetimos, y recordamos seguir la misma técnica que en la 
-		tabla 3 combinamos los un 1´s con los 2 1´s y así sucesivamente. Importante agregar un guion en la variable 
-		que cambie en nuestra combinación.  </p>
-	<p>Nota: Marcar con un * en nuestra tabla 3 los minitérminos que utilizamos en nuestras combinaciones </p>
-</div>	
-
-<p></p>
-<p>Nuestro paso no.5 y último paso es generar nuestra Tabla 5 de la siguiente manera:</p>
-<img id="tabla10" src="images/tabla5_ejemplo2.png">
-<p></p>
-<div class="cuadro">
-	<p></p>
-	<p>COLUMNAS TABLA 5</p>
-	<p>Combinaciones: Esta columna contiene las combinaciones que realizamos en nuestra tabla 4 y también las que 
-		no contengan asteriscos.  </p>
-	<p>abcd: Este es el número binario de nuestra combinación después de modificar la variable distinta con un guion. </p>
-	<p>1´s: El número de 1´s que contiene nuestro número binario dado por la combinación. </p>
-	<p>0,1,4,5,11,15: son todos los minitérminos de nuestra expresión, tiene una x para marcar que ya han sido 
-		utilizados. </p>
-	<p>Producto: Es el valor de las variables según nuestra columna abcd en la Tabla 5, recordemos que un guion nos 
-		indica que no es necesaria esa variable, un cero es el negado de la variable y un 1 es la misma variable. </p>
-</div>	
-	<p>En nuestro resultado final pondremos nuestra minimización dada por la suma de productos de la siguiente manera:
-		f=(a,b,c,d) = ∑m(0,1,4,5,11,15) = b´d´+ a´c´d´
-		</p>
-
-		
-<p class="texto-negritas">Ejemplo 3</p>	
-<p></p>
-<p>En el siguiente ejemplo podremos observar cómo se lleva a cabo el método de Quine McCluskey para minimizar la 
-	siguiente expresión.</p>
-<p>f=(a,b,c,d) = ∑m(0,2,4,6,8,11,15) podemos observar que la función contiene 7 minitérminos</p>
-<p>Nuestro paso no.1 es generar nuestra Tabla 1:</p>
-<img id="tabla11" src="images/tabla1_ejemplo3.png">
-<p></p>
-<div class="cuadro">
-	<p></p>
-	<p>Columna minitérminos: llenamos conforme a los minitérminos que nos muestra la función en este 
-		caso: 0,2,4,6,8,11,15</p>
-	<p>Columna 1´s: es el número de 1´s que contiene el número binario de ese minitérmino  </p>
-	<p>abcd: el número binario que representa ese minitérmino  </p>
-</div>
-
-<p></p>
-<p>Nuestro paso no.2 es generar nuestra Tabla 2 que consiste en lo siguiente:</p>
-<img id="tabla12" src="images/tabla2_ejemplo3.png">
-<p></p>
-<div class="cuadro">
-	<p></p>
-	<p>En nuestra tabla 2 agruparemos nuestros minitérminos conforme al número de 1´s que contengan en su número 
-		binario.  </p>
-	<p>Nota: En la columna de comentarios de la tabla 1 iremos añadiendo un * a cada minitérmino ya utilizado en 
-		nuestra tabla 2 esto con la finalidad de tener un mejor control. </p>
-</div>
-
-<p></p>
-<p>Nuestro paso no.3 es generar nuestra Tabla 3 de la siguiente manera:</p>
-<img id="tabla13" src="images/tabla3_ejemplo3.png">
-<p></p>
-<div class="cuadro">
-	<p></p>
-	<p>En nuestra tabla 3 haremos combinaciones con los minitérminos que tenemos en la tabla 2, es muy importante 
-		saber que solo pueden cambiar en una sola variable y que se debe de hacer de acuerdo con el número de 1´s; 
-		primero los un 1´s con los de dos 1´s, los de dos 1´s con los de tres 1´s y sucesivamente. </p>
-	<p>Después intercambiaremos por un guion la variable que cambia en nuestra combinación y nuevamente llenamos 
-		la columna de 1´s que hay en esa combinación.   </p>
-	<p>Nota: importante marcar con * cada minitérmino utilizado en nuestra tabla 2  </p>
-</div>
-
-<p></p>
-<p>El siguiente paso no.4 es realizar nuestra Tabla 4 con las siguientes especificaciones:</p>
-<img id="tabla14" src="images/tabla4_ejemplo3.png">
-<p></p>
-<div class="cuadro">
-	<p></p>
-	<p>En este caso tenemos la combinación: (0,2,4,6) porque son combinaciones que ya existen (0,4) con (2,6) y 
-		también tenemos (0,2) con (4,6) entonces no las repetimos, y recordamos seguir la misma técnica que en la 
-		tabla 3 combinamos los un 1´s con los 2 1´s y así sucesivamente. Importante agregar un guion en la variable 
-		que cambie en nuestra combinación. </p>
-	<p>Nota: marcar con un * en nuestra tabla 3 los minitérminos que utilizamos en nuestras combinaciones   </p>
-</div>
-
-<p></p>
-<p>Nuestro paso no.5 y último paso es generar nuestra Tabla 5 de la siguiente manera:</p>
-<img id="tabla15" src="images/tabla5_ejemplo3.png">
-<p></p>
-<div class="cuadro">
-	<p></p>
-	<p>COLUMNAS TABLA 5</p>
-	<p>Combinaciones: Esta columna contiene las combinaciones que realizamos nuestra tabla 4 y también las 
-		combinaciones que se quedan sin asterisco.  </p>
-	<p>abcd: Este es el número binario de nuestra combinación después de modificar la variable distinta con un 
-		guion. </p>
-	<p>1´s: El número de 1´s que contiene nuestro número binario dado por la combinación. </p>
-	<p>(0,2,4,6,8,11,15): son todos los minitérminos de nuestra expresión, tiene una x para marcar que ya han sido 
-		utilizados. </p>
-	<p>Producto: Es el valor de las variables según nuestra columna abcd en la Tabla 5, recordemos que un guion nos 
-		indica que no es necesaria esa variable, un cero es el negado de la variable y un 1 es la misma variable. </p>
-	</div>	
-	<p>En nuestro resultado final pondremos nuestra minimización dada por la suma de productos de la siguiente 
-		manera: f=(a,b,c,d) = ∑m(0,2,4,6,8,11,15) = a’d’+b’c’d’+ acd</p>	
-
-
-		<p class="texto-negritas">Ejemplo 4</p>	
-		<p></p>
-		<p>En el siguiente ejemplo podremos observar cómo se lleva a cabo el método de Quine McCluskey para 
-			minimizar la siguiente expresión.</p>
-		<p>f=(a,b,c,d) = ∑m(1,2,5,8,9,10,13) podemos observar que la función contiene 7 minitérminos</p>
-		<p>Nuestro paso no.1 es generar nuestra Tabla 1:</p>
-		<img id="tabla16" src="images/tabla1_ejemplo4.png">
-		<p></p>
-		<div class="cuadro">
-			<p></p>
-			<p>Columna minitérminos: llenamos conforme a los minitérminos que nos muestra la función en este 
-				caso: 1,2,5,8,9,10,13</p>
-			<p>Columna 1´s: es el número de 1´s que contiene el número binario de ese minitérmino </p>
-			<p>abcd: el número binario que representa ese minitérmino  </p>
-		</div>
-
-		<p>Nuestro paso no.2 es generar nuestra Tabla 2 que consiste en lo siguiente:</p>
-		<img id="tabla17" src="images/tabla2_ejemplo4.png">
-		<p></p>
-		<div class="cuadro">
-			<p></p>
-			<p>En nuestra tabla 2 agruparemos nuestros minitérminos conforme al número de 1´s que contengan en su 
-				número binario.  </p>
-			<p>Nota: En la columna de comentarios de la tabla 1 iremos añadiendo un * a cada minitérmino ya 
-				utilizado en nuestra tabla 2 esto con la finalidad de tener un mejor control.  </p>
-		</div>
-
-		<p>Nuestro paso no.3 es generar nuestra Tabla 3 de la siguiente manera:</p>
-		<img id="tabla18" src="images/tabla3_ejemplo4.png">
-		<p></p>
-		<div class="cuadro">
-			<p></p>
-			<p>En nuestra tabla 3 haremos combinaciones con los minitérminos que tenemos en la tabla 2, es muy 
-				importante saber que solo pueden cambiar en una sola variable y que se debe de hacer de acuerdo con 
-				el número de 1´s; primero los un 1´s con los de dos 1´s, los de dos 1´s con los de tres 1´s y 
-				sucesivamente.  </p>
-			<p>Después intercambiaremos por un guion la variable que cambia en nuestra combinación y nuevamente 
-				llenamos la columna de 1´s que hay en esa combinación. </p>
-			<p>Nota: importante marcar con * cada minitérmino utilizado en nuestra tabla 2 </p>
-		</div>
-
-		<p>El siguiente paso no.4 es realizar nuestra Tabla 4 con las siguientes especificaciones:</p>
-		<img id="tabla19" src="images/tabla4_ejemplo4.png">
-		<p></p>
-		<div class="cuadro">
-			<p></p>
-			<p>En este caso tenemos la combinación: (1,5,9,13) porque son combinaciones que ya existen (1,5) con 
-				(9,13). Recordamos seguir la misma técnica que en la tabla 3 combinamos los un 1´s con los 2 1´s y 
-				así sucesivamente. Importante agregar un guion en la variable que cambie en nuestra combinación.</p>
-			<p>Nota: marcar con un * en nuestra tabla 3 los minitérminos que utilizamos en nuestras combinaciones</p>
-		</div>
-
-		
-		<p>Nuestro paso no.5 y último paso es generar nuestra Tabla 5 de la siguiente manera:</p>
-		<img id="tabla20" src="images/tabla5_ejemplo4.png">
-		<p></p>
-		<div class="cuadro">
-			<p></p>
-			<p>COLUMNAS TABLA 5</p>
-			<p>Combinaciones: Esta columna contiene las combinaciones que realizamos nuestra tabla 4 y también las 
-				combinaciones que se quedan sin asterisco. </p>
-			<p>abcd: Este es el número binario de nuestra combinación después de modificar la variable distinta 
-				con un guion. </p>
-			<p>1´s: El número de 1´s que contiene nuestro número binario dado por la combinación. </p>
-			<p>(1,2,5,8,9,10,13): son todos los minitérminos de nuestra expresión, tiene una x para marcar que ya 
-				han sido utilizados. </p>
-			<p>Producto: Es el valor de las variables según nuestra columna abcd en la Tabla 5, recordemos que un 
-				guion nos indica que no es necesaria esa variable, un cero es el negado de la variable y un 1 es la 
-				misma variable</p>
-			<p>Nota: Si logramos observar nuestra combinación (8,9) ya está contenida en otras combinaciones, por 
-				lo tanto, la eliminamos</p>
-		</div>
-		<p>En nuestro resultado final pondremos nuestra minimización dada por la suma de productos de la 
-			siguiente manera recordando eliminar nuestra combinación (8,9)</p>
-		<p>f=(a,b,c,d) = ∑m(0,2,4,6,8,11,15) = c’d+ b’cd’+ ab’d’</p>
-
-		<p class="texto-negritas">Ejemplo 5</p>	
-		<p></p>
-		<p>En el siguiente ejemplo podremos observar cómo se lleva a cabo el método de Quine McCluskey para 
-			minimizar la siguiente expresión.</p>
-		<p>f(a,b,c,d)= ∑m(0,2,4,5,6,8)</p>
-		<p>Nuestro paso no.1 es generar nuestra Tabla 1 y obtener las formas binarias de los minitérminos y la 
-			cantidad de 1’s en ellos:</p>
-		<img id="tabla21" src="images/tabla1_ejemplo5.png">
-
-		<p></p>
-		<p>Generamos la segunda tabla. Objetivo: Reagrupar a los minitérminos con base en la cantidad de 1’s en 
-			su representación binaria.</p>
-		<p>Marcamos con un * en la Tabla 1, para indicar que hemos agregado los minitérminos en la Tabla 2.</p>
-		<img id="tabla22" src="images/tabla2_ejemplo5.png">
-
-		<p></p>
-		<p>Generamos una tercera tabla. Objetivo: Realizar la primera combinación con minitérminos.</p>
-		<p>**Pasamos a la parte de realización de combinaciones con los minitérminos.</p>
-		<p>COMBINACIONES:</p>
-		<p>1.Buscamos en la representación binaria de los minitérminos, los que difieren en solo una variable 
-			(la que sea) para poder realizar una combinación con apoyo en la tabla 2.</p>
-		<p>2.Empezamos con el primer caso en la cantidad de 1’s con la siguiente cantidad. En este caso los que 
-			tienen cero 1’s con los que tiene un solo 1.</p>
-		<p>3.Al combinar a los minitérminos, si tenemos:</p>
-		<p>0 y 0 = 0</p>	
-		<p>1 y 1 = 1</p>
-		<p>0 y 1 = -</p>
-		<p>Ej.:
-			Buscamos combinar al minitérmino 0 y 2.
-			</p>
-			<img id="tabla23" src="images/ex1_ejemplo5.png">
-		<p>Marcamos con un * en la Tabla 2, para indicar que hemos agregado las combinaciones de minitérminos 
-			posibles en la Tabla 3.</p>
-		<p>Tabla 3</p>
-		<img id="tabla24" src="images/tabla3_ejemplo5.png">
-		<p>4.Generamos una cuarta tabla. Objetivo: Realizar la segunda combinación con las combinaciones de la 
-			tabla anterior.</p>
-		<p>Buscamos combinar a la combinación (0,2) y (4,6).</p>
-		<img id="tabla25" src="images/ex2_ejemplo5.png">
-		<p>Marcamos con un * para las combinaciones (0,2) y (4,6) primero por la combinación que estamos realizando.
-			Sin embargo, como tenemos representado también a (0,4), lo marcaremos de igual manera en la Tabla 3.</p>
-		<p>Tabla 4</p>
-		<img id="tabla26" src="images/tabla4_ejemplo5.png">
-		<p>5.Generamos la tabla 5. Objetivo: Colocar a los implicantes primos (combinaciones que ya no pueden ser
-			 combinadas con otras; se denotan por no tener una marca * en las tablas 3 y 4), en una sola tabla para 
-			 obtener a los productos.</p>
-		<p>Tabla 5. Implicantes primos</p>
-		<img id="tabla27" src="images/tabla5_ejemplo5.png">
-		<p>NOTA: Si en la representación binaria (abcd) tenemos para el producto:</p>
-		<p>- no hay variable representativa</p>
-		<p>0 la variable está negada</p>
-		<p>1 la variable no está negada</p>
-		<p>FINALMENTE OBTENEMOS LA MINIMIZACIÓN DADA POR LA SUMA DE LOS PRODUCTOS, resultado que podemos 
-			representar como:</p>
-		<p>f(a,b,c,d)= ∑m(0,2,4,5,6,8)=a' d'+b' c' d'+a'bc'</p>
-		<p>o simplemente:</p>
-		<p>f(a,b,c,d)=a'd'+b'c'd'+a'bc'</p>
-
-		<p class="texto-negritas">Ejemplo 6</p>		
-		<p>f(a,b,c,d) = ∑m(0,2,3,7,9)</p>
-		<p>Creamos nuestra tabla 1:</p>
-		<img id="tabla28" src="images/tabla1_ejemplo6.png">
-		<p>Creamos nuestra tabla 2:</p>
-		<img id="tabla29" src="images/tabla2_ejemplo6.png">
-		<p>Creamos nuestra tabla 3:</p>
-		<img id="tabla30" src="images/tabla3_ejemplo6.png">
-		<p>Creamos nuestra tabla 4:</p>
-		<img id="tabla31" src="images/tabla4_ejemplo6.png">
-		<p>Creamos nuestra tabla 5:</p>
-		<img id="tabla32" src="images/tabla5_ejemplo6.png">
-		<p>En nuestro resultado final pondremos nuestra minimización dada por la suma de productos de la 
-			siguiente manera:</p>
-		<p>f(a,b,c,d) = ∑m=(0,2,3,7,9) = a’b’+b’d’</p>
-
-		<p class="texto-negritas">Ejemplo 7</p>	
-		<p>f(a,b,c,d) = ∑m(4,5,7,13)</p>
-		<p>Creamos nuestra tabla 1:</p>
-		<img id="tabla33" src="images/tabla1_ejemplo7.png">
-		<p>Creamos nuestra tabla 2:</p>
-		<img id="tabla34" src="images/tabla2_ejemplo7.png">
-		<p>Creamos nuestra tabla 3:</p>
-		<img id="tabla35" src="images/tabla3_ejemplo7.png">
-		<p>Creamos nuestra tabla 4:</p>
-		<img id="tabla36" src="images/tabla4_ejemplo7.png">
-		<p>Directo a la tabla 5, pues todas las combinaciones anteriores son implicantes primos.</p>
-		<p>Creamos nuestra tabla 5:</p>
-		<img id="tabla37" src="images/tabla5_ejemplo7.png">
-		<p>En nuestro resultado final pondremos nuestra minimización dada por la suma de productos de la 
-			siguiente manera:</p>
-		<p>f(a,b,c,d) = ∑m(0,2,3,7,9)= a’bc’+a’bd+bc’d</p>
-		
-	</html>
+</html>
